@@ -30,4 +30,11 @@ return [
         ],
     ],
     'paging_number' => 10,
+
+    'article' => [
+        'status' => [
+            'activated' => 1,
+            'unactivated' => 0,
+        ],
+    ],
 ];

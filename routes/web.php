@@ -26,6 +26,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['cus
 
     //Route manage Garages
     Route::resource('garages', 'GarageController', ['only' => ['index', 'update', 'destroy', 'show']]);
+
+    //Route manage Articles
+    Route::resource('articles', 'ArticlesController');
 });
 
 //Partner routes.

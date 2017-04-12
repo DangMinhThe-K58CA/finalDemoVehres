@@ -74,11 +74,11 @@
                     <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-book nav_icon"></i></i> <span class="nav-label">{{ trans('admin.manageArticles') }}</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#" class=" hvr-bounce-to-right"> <i class="fa fa-plus nav_icon"></i></i>{{ trans('admin.newArticles') }}</a>
+                            <a href="{{ action('Admin\ArticlesController@index', ['status' => config('common.article.status.unactivated')]) }}" class=" hvr-bounce-to-right"> <i class="fa fa-plus nav_icon"></i></i>{{ trans('admin.newArticles') }}</a>
                         </li>
 
                         <li>
-                            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-check nav_icon"></i>{{ trans('admin.articlesActivated') }}</a>
+                            <a href="{{ action('Admin\ArticlesController@index', ['status' => config('common.article.status.activated')]) }}" class=" hvr-bounce-to-right"><i class="fa fa-check nav_icon"></i>{{ trans('admin.articlesActivated') }}</a>
                         </li>
                     </ul>
                 </li>
