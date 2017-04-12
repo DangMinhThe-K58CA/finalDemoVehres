@@ -33,13 +33,19 @@
                 <div class="grid-form">
                     @yield('content')
                 </div>
+
+                <div class="notify_teacher">
+                    <div class="notify">
+                        <p class="message"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Scripts-->
     @include('admins.layouts.adminScript')
-
 </body>
 </html>
+
 

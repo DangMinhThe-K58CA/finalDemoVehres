@@ -26,6 +26,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['cus
 
     //Route manage Garages
     Route::resource('garages', 'GarageController', ['only' => ['index', 'update', 'destroy', 'show']]);
+
+    Route::get('detail-garages/{garage}', [
+        'as' => 'admin.detailgarage',
+        'uses' => 'GarageController@detailGarage'
+    ]);
+
+    //Route manage Users
+    Route::resource('users', 'UserController');
 });
 
 //Partner routes.
@@ -47,3 +55,6 @@ Route::group(['namespace' => 'Home', 'prefix' => 'home', 'middleware' => ['custo
 
 //Account activation route
 Route::get('/accountActive', 'Auth\VerifyAccountController@activateAccount');
+
+//notifications
+Route::resource('/notifications', 'NotificationController');

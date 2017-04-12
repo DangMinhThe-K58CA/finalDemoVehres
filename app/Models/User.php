@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Broadcasting\PrivateChannel;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -69,7 +72,7 @@ class User extends Authenticatable
      */
     public function getAvatarAttribute($value)
     {
-        return config('common.path.image') . $value;
+        return config('common.path.image') . '/' .$value;
     }
 
     /**
@@ -96,5 +99,4 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-
 }

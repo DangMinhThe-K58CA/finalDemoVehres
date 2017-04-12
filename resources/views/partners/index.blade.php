@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admins.layouts.index')
 @section('javascript')
     {{--<script src={{ asset('/js/admins/home.js') }}></script>--}}
 @endsection

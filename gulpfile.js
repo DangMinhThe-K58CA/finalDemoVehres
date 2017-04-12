@@ -17,7 +17,7 @@ elixir((mix) => {
     mix.sass('app.scss')
        .webpack('app.js')
        .sass('style.scss')
-       .scripts('layoutAdmin.js');
+       .webpack('layoutAdmin.js');
     mix.scripts('helpers/*.js', 'public/js/helpers/helpers.js');
     mix.copy('resources/assets/bowers/font-awesome/css/font-awesome.min.css', 'public/bowers/font-awesome/css/font-awesome.min.css');
     mix.copy('resources/assets/bowers/font-awesome/fonts/', 'public/bowers/font-awesome/fonts/');
