@@ -13,6 +13,7 @@ return [
     'garages' => [
         'new-garages' => 'New Garages',
         'activated_garages' => 'Activated Garages',
+        'no' => 'No',
         'id' => 'ID',
         'name' => 'Name',
         'location' => 'Location',
@@ -30,6 +31,36 @@ return [
         'show_garage' => 'Infomation Garage',
         'avatar' => 'Image',
         'created_at' => 'Created At',
+        'unactive' => 'UnActive',
+        'detail-garages' => 'Detail Garage',
+    ],
+    'users' => [
+        'no' => 'No',
+        'name' => 'Name',
+        'email' => 'Email',
+        'role' => 'Role',
+        'status' => 'Status',
+        'description' => 'Description',
+        'edit' => 'Edit',
+        'delete' => 'Delete',
+        'makePartner' => 'Make Partner',
+        'roles' => [
+            'user' => 'User',
+            'partner' => 'Partner',
+            'admin' => 'Admin',
+        ],
+        'makeAdmin' => 'Make Admin',
+        'manage_users' => 'Manage User',
+    ],
+    'notifications' => [
+        'list_notifications' => 'List Notifications',
+    ],
+    'message' => [
+        'unactive_garage' => 'Admin was unactive ',
+        'request_unactive_garage' => 'You receive a request unactive ',
+    ],
+    'button' => [
+        'unactive' => 'UnActive',
     ],
 
     'articles' => [

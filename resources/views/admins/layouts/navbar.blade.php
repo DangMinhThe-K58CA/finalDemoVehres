@@ -8,17 +8,12 @@
         </button>
        <h1><a class="navbar-brand" href="{{ route('home') }}">{{ trans('admin.nameApp') }}</a></h1>
     </div>
-    <div class="border-bottom">
-        <div class="full-left">
-            <section class="full-top">
-                <button id="toggle"><i class="fa fa-arrows-alt"></i></button>
-            </section>
-        <div class="clearfix"></div>
-    </div>
 
     <!-- Infomation -->
     <div class="drop-men">
         <ul class="nav_1">
+            <!-- content notification -->
+            @include('admins.layouts.notifications')
             <!-- info -->
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown">
@@ -84,7 +79,9 @@
                 </li>
 
                 <li>
-                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-user nav_icon"></i> <span class="nav-label">{{ trans('admin.manageUsers') }}</span></a>
+                    <a href="{{ action('Admin\UserController@index') }}" class=" hvr-bounce-to-right">
+                        <i class="fa fa-user nav_icon"></i> <span class="nav-label">{{ trans('admin.manageUsers') }}</span>
+                    </a>
                 </li>
             </ul>
         </div>

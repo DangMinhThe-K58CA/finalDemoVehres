@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Http\Requests;
+
+class GettingGarageRequest extends BaseApiRequest
+{
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'options' => 'required',
+            'curPos' => 'required',
+        ];
+    }
+}

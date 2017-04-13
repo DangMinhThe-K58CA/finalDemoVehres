@@ -68,7 +68,7 @@
                                             <form enctype="multipart/form-data" class="form-horizontal" role="form" method="POST" action="{{ action('Home\UserController@update', ['user' => 'update']) }}">
                                                 {!! csrf_field() !!}
                                                 {!! method_field('PATCH') !!}
-                                                <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                                <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                                                     <label for="name" class="col-md-4 control-label">{{ trans('layout.name') }}</label>
 
                                                     <div class="col-md-6">
@@ -113,7 +113,7 @@
                                                     </div>
                                                     <div class="col-md-4 col-md-offset-right-4 col-md-offset-4">
                                                         <br/>
-                                                        <input onchange="previewImage(this, 'previewField');" type="file" id = "avatar" name="avatar" accept="image/*">
+                                                        <input type="file" id = "avatar" name="avatar" accept="image/*">
                                                         @if ($errors->has('avatar'))
                                                             <span class="help-block">
                                                                 <strong>{{ $errors->first('avatar') }}</strong>

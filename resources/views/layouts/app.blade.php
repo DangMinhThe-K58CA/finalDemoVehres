@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<div id="app">
+<div id="app" data-asset-url="{{ asset('') }}">
     <!-- Top Nav bar -->
     @include('layouts.topNav')
 
@@ -23,7 +23,9 @@
     @include('layouts.alertMessage')
 
     <!-- Content -->
-    @yield('content')
+    <div class="pageContent">
+        @yield('content')
+    </div>
 
 </div>
 

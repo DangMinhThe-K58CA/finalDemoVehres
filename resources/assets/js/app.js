@@ -4,21 +4,74 @@
  * include Vue and Vue Resource. This gives a great starting point for
  * building robust, powerful web applications using Vue and Laravel.
  */
+import Profile from './homes/user/Profile';
+import HomeMaps from './homes/HomeMaps';
+import Bookmark from './homes/Bookmark';
+import Visit from './homes/Visit';
+import Article from './homes/article/Article';
+
 require('./bootstrap');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+window.assetUrl = $('#app').data('asset-url').slice(0, -1);
 
-// Vue.component('example', require('./components/Example.vue'));
+window.initMaps = function () {
+    window.homeMaps = new HomeMaps(this);
+    window.homeMaps.init('homeMap', null);
+}
 
-// const app = new Vue({
-//     el: '#app'
-// });
+window.initGarageOnMaps = function () {
+    window.homeMaps = new HomeMaps(this);
+    var garage = $('#main').data('garage');
+    window.homeMaps.init('viewGarageOnMap', garage);
+}
 
-$(document).ready(function () {
-    //
-});
+class App
+{
+    constructor(window) {
+        this.window = window;
+        this.jQuery = window.jQuery;
+    }
 
+    run() {
+        this.setup();
+
+        var profile = new Profile(this);
+        profile.init();
+
+        var bookmark = new Bookmark(this);
+        bookmark.init();
+
+        var visit = new Visit(this);
+        visit.init();
+
+        $('.myWorldField').ready(function(e){
+            $('.search-panel .dropdown-menu').find('a').click(function(e) {
+                e.preventDefault();
+                var param = $(this).attr("href").replace("#","");
+                var concept = $(this).text();
+                $('.search-panel span#search_concept').text(concept);
+                $('.input-group #search_param').val(param);
+            });
+        });
+
+        var self = this;
+        $('#showArticleField').ready(function () {
+            var article = new Article(self);
+            article.init();
+        });
+    }
+
+    setup() {
+        const $ = this.jQuery;
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        });
+    }
+}
+
+(function (window) {
+    const app = new App(window);
+    app.run();
+})(window);

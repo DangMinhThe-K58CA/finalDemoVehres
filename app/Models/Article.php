@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Article extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'type',
         'title',
@@ -14,6 +17,7 @@ class Article extends Model
         'user_id',
         'avatar',
     ];
+
     /**
      * Get all visits.
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
@@ -41,6 +45,10 @@ class Article extends Model
         return $this->morphMany(Bookmark::class, 'bookmarkable');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     /**
      * Get full path for avatar.
      * @param $value

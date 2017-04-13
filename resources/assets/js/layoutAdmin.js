@@ -1,3 +1,5 @@
+require('./bootstrap');
+
 $(document).ready(function () {
     $('#side-menu').metisMenu();
     //Loads the correct sidebar on window load,
@@ -36,6 +38,21 @@ $(document).ready(function () {
         var garageId = $(event.currentTarget).data('garage-id');
         $.get('/admin/garages/'+ garageId, function(response) {
             $('#show_activated_garage').html(response);
+        });
+    });
+
+    //markasread notification
+    $('a[name="notifications"]').click(function (event) {
+        var notiId = $(event.currentTarget).data('notif-id');
+        var token = $('meta[name="csrf-token"]').attr('content');
+        var numberNoti = $('.number').text();
+        numberNoti = parseInt(numberNoti) - 1;
+        $.ajax({
+            url: '/notifications/' + notiId,
+            type: 'PUT',
+            data: {
+                _token: token
+            },
         });
     });
 });

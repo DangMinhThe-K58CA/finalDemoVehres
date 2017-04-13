@@ -14,7 +14,7 @@
         @include('errors.success')
         <thead>
             <tr align="center">
-                <th>{{ trans('admin.garages.id') }}</th>
+                <th>{{ trans('admin.garages.no') }}</th>
                 <th>{{ trans('admin.garages.name') }}</th>
                 <th>{{ trans('admin.garages.short_description') }}</th>
                 <th>{{ trans('admin.garages.phone_number') }}</th>
@@ -23,6 +23,7 @@
                 <th>{{ trans('admin.garages.working_time') }}</th>
                 <th>{{ trans('admin.garages.view') }}</th>
                 @if ($status == config('common.garage.status.activated'))
+                <th>{{ trans('admin.garages.unactive') }}</th>
                 <th>{{ trans('admin.garages.delete') }}</th>
                 @elseif ($status == config('common.garage.status.unactivated'))
                 <th>{{ trans('admin.garages.accept') }}</th>
@@ -30,10 +31,10 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($garages as $item)
+            @foreach($garages as $key => $item)
             <tr>
                 <td>
-                    <label>{{ $item->id }}</label>
+                    <label>{{ $key + 1 }}</label>
                     <input type='hidden' class="garageId" value="{{ $item->id }}">
                 </td>
                 <td>{{ $item->name }}</td>
@@ -48,6 +49,11 @@
                     </a>
                 </td>
                 @if ($status == config('common.garage.status.activated'))
+                <td class="center">
+                    {!!  Form::open(['method' => 'PUT', 'route' => ['garages.update', $item->id]]) !!}
+                    {!! Form::button('<span class="glyphicon glyphicon-remove"></span> ', ['type' => 'submit', 'class' => 'btn btn-success', 'onclick' => "return confirm('Are you agree unactive this garage ?')"]) !!}
+                    {!! Form::close() !!}
+                </td>
                 <td class="center">
                     {!! Form::open(['method' => 'DELETE', 'route' => ['garages.destroy', $item['id']]]) !!}
                     {{ Form::button('<span class="glyphicon glyphicon-remove"></span> ', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Are you sure to delete ?')"]) }}
