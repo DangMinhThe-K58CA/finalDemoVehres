@@ -1,0 +1,73 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+//Global for app layout.
+body {
+  overflow:scroll !important;
+}
+//
+.alert {
+  -webkit-animation: seconds 1.0s forwards;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-delay: 5s;
+  animation: seconds 1.0s forwards;
+  animation-iteration-count: 1;
+  animation-delay: 5s;
+  position: relative;
+}
+@-webkit-keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: -9999px;
+  }
+}
+@keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    left: -9999px;
+  }
+}
+
+a:link {
+  text-decoration:none;
+  color: #2830c6;
+}
+
+/* visited link */
+a:visited {
+  color: green;
+}
+
+/* mouse over link */
+a:hover {
+  color: hotpink;
+  text-decoration:none;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+
+.navbar-static-top {
+  position: fixed !important;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+}
+
+.pageContent {
+  margin-top: 5% !important;
+}

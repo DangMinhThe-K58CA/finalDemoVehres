@@ -1,0 +1,35 @@
+<?php
+
+return [
+    'nameApp' => 'VEHRES',
+    'dashboard' => 'Dashboard',
+    'manageGarages' => 'Manage Garages',
+    'manageArticles' => 'Manage Articles',
+    'manageUsers' => 'Manage User',
+    'newGarages' => 'New Garages',
+    'garagesActivated' => 'Activated Garages',
+    'newArticles' => 'New Articles',
+    'articlesActivated' => 'Articles Activated',
+    'garages' => [
+        'new-garages' => 'New Garages',
+        'activated_garages' => 'Activated Garages',
+        'id' => 'ID',
+        'name' => 'Name',
+        'location' => 'Location',
+        'short_description' => 'Short Description',
+        'phone_number' => 'Phone Number',
+        'address' => 'Address',
+        'website' => 'Website',
+        'working_time' => 'Working Time',
+        'action' => 'Action',
+        'view' => 'View',
+        'accept' => 'Active',
+        'show-garages' => 'Show Garages',
+        'description' => 'Description',
+        'delete' => 'Delete',
+        'show_garage' => 'Infomation Garage',
+        'avatar' => 'Image',
+        'created_at' => 'Created At',
+    ],
+
+];
