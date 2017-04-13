@@ -56,6 +56,15 @@ class Article extends Model
      */
     public function getAvatarAttribute($value)
     {
-        return config('common.path.image') . '/' . $value;
+        return config('common.path.image') . '/' .$value;
+    }
+
+    /**
+     * Get user who had created.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

@@ -29,6 +29,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['cus
     //Route manage Garages
     Route::resource('garages', 'GarageController', ['only' => ['index', 'update', 'destroy', 'show']]);
 
+    //Route manage Articles
+    Route::resource('articles', 'ArticlesController');
     Route::get('detail-garages/{garage}', [
         'as' => 'admin.detailgarage',
         'uses' => 'GarageController@detailGarage'

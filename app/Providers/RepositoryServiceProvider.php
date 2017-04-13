@@ -14,6 +14,8 @@ use Illuminate\Support\ServiceProvider;
 use App;
 use App\Repositories\Contracts\GarageRepositoryInterface;
 use App\Repositories\Eloquent\GarageRepository;
+use App\Repositories\Contracts\ArticleRepositoryInterface;
+use App\Repositories\Eloquent\ArticleRepository;
 use SebastianBergmann\Comparator\Book;
 
 use App\Repositories\Contracts\UserRepositoryInterface;

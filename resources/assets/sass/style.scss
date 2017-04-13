@@ -53,13 +53,23 @@ div#wrapper {
   width: 60px;
   height: 60px;
 }
-
+/*article*/
+.top {
+  margin-top: 10px;
+}
+.sub {
+  margin-top: 10px;
+}
 /*showActivatedGarage*/
 .showActivatedGarage {
   margin-top: 20px;
 }
-/*-- header --*/
 
+.updated_at {
+  color: #64B7EC;
+  float: right;
+}
+/*-- header --*/
 .navbar .navbar-nav li a {
   padding: 0 10px;
   line-height: 56px;

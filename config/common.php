@@ -61,4 +61,11 @@ return [
 
     'home_map_icon' => 'uploads/images/location-map-flat.jpg',
     'paging_number' => 10,
+
+    'article' => [
+        'status' => [
+            'activated' => 1,
+            'unactivated' => 0,
+        ],
+    ],
 ];
