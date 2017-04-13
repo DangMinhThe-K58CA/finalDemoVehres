@@ -180,7 +180,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
         App\Providers\HelperServiceProvider::class,
-
+        App\Providers\ViewComposers::class,
+        App\Providers\BroadcastServiceProvider::class,
     ],
 
     /*

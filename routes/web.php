@@ -13,6 +13,9 @@
 
 Route::get('/', 'Home\HomeController@welcome');
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Auth::routes();
 
@@ -25,6 +28,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['cus
 
     //Route manage Garages
     Route::resource('garages', 'GarageController', ['only' => ['index', 'update', 'destroy', 'show']]);
+
+    Route::get('detail-garages/{garage}', [
+        'as' => 'admin.detailgarage',
+        'uses' => 'GarageController@detailGarage'
+    ]);
+
+    //Route manage Users
+    Route::resource('users', 'UserController');
 });
 
 //Partner routes.
@@ -84,3 +95,5 @@ Route::get('/accountActive', 'Auth\VerifyAccountController@activateAccount');
 
 //Administration unit route
 Route::get('/getChildrenAdministrationUnit', 'AdministrationUnitController@getChildren');
+//notifications
+Route::resource('/notifications', 'NotificationController');

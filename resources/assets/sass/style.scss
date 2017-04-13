@@ -44,8 +44,11 @@ div#wrapper {
   background-color: #fff;
 }
 
-/*avatar*/
+.caret {
+  padding: 0;
+}
 
+/*avatar*/
 #avatar {
   width: 60px;
   height: 60px;
@@ -519,7 +522,7 @@ nav.navbar.navbar-static-top {
 
 i.fa.fa-globe {
   font-size: 1.8em;
-  color: #999;
+  color: #2e6da4;
 }
 
 .dropdown, .dropup {
@@ -564,7 +567,7 @@ i.fa.fa-globe {
   float: right;
 
   i {
-    &.fa-user-plus, &.fa-heart, &.fa-times, &.fa-info, &.fa-rss {
+    &.fa-user-plus, &.fa-heart, &.fa-times, &.fa-info, &.fa-check-square-o {
       font-size: 12px;
       color: #fff;
       background-color: #3BB2D0;
@@ -587,8 +590,8 @@ i.fa.fa-globe {
       background-color: #FBB03B;
     }
 
-    &.fa-rss {
-      background-color: #ED6498;
+    &.fa-check-square-o {
+      background-color: #1ABC9C;
     }
   }
 }
@@ -600,8 +603,8 @@ i.fa.fa-globe {
 
 .menu1 {
   top: 172%;
-  left: -11em;
-  min-width: 325px;
+  left: -28em;
+  min-width: 400px;
   padding: 0;
 }
 

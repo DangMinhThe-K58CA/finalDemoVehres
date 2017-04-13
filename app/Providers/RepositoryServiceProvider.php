@@ -16,6 +16,8 @@ use App\Repositories\Contracts\GarageRepositoryInterface;
 use App\Repositories\Eloquent\GarageRepository;
 use SebastianBergmann\Comparator\Book;
 
+use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Eloquent\UserRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -41,5 +43,6 @@ class RepositoryServiceProvider extends ServiceProvider
         App::bind(BookmarkRepositoryInterface::class, BookmarkRepository::class);
         App::bind(VisitRepositoryInterface::class, VisitRepository::class);
         App::bind(ArticleRepositoryInterface::class, ArticleRepository::class);
+        App::bind(UserRepositoryInterface::class, UserRepository::class);
     }
 }
