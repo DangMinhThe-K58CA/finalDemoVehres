@@ -41,18 +41,42 @@ $(document).ready(function () {
         });
     });
 
-    //markasread notification
-    $('a[name="notifications"]').click(function (event) {
-        var notiId = $(event.currentTarget).data('notif-id');
+
+    $(document).on('click', 'a[name="notifications"]', function (event) {
+        var notiId = $(event.currentTarget).closest('li').data('notif-id');
         var token = $('meta[name="csrf-token"]').attr('content');
         var numberNoti = $('.number').text();
         numberNoti = parseInt(numberNoti) - 1;
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        });
         $.ajax({
-            url: '/notifications/' + notiId,
-            type: 'PUT',
+            url: laroute.action('App\Http\Controllers\NotificationController@update', {'notification' : notiId}),
+            method: 'POST',
             data: {
-                _token: token
-            },
+                '_method': 'PUT'
+            }
         });
     });
 });
+
+
+//markasread notification
+// $(document).on('click', 'a[name="notifications"]', function (event) {
+//     var notiId = $(event.currentTarget).closest('li').data('notif-id');
+//     var token = $('meta[name="csrf-token"]').attr('content');
+//     var numberNoti = $('.number').text();
+//     numberNoti = parseInt(numberNoti) - 1;
+//     alert(laroute.action('App\Http\Controllers\NotificationController@update', {'notification' : notiId}));
+//     $.ajax({
+//         url: laroute.action('NotificationController@update', {'notification' : notiId}),
+//         method: 'POST',
+//         data: {
+//             '_token': token,
+//             '_method': 'PUT'
+//         },
+//     });
+// });

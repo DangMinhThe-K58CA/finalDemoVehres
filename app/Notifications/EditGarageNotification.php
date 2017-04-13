@@ -7,25 +7,30 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
-use App\Models\Garage;
 
 class EditGarageNotification extends Notification
 {
     use Queueable;
 
-    protected $garage;
+    protected $instance;
 
     protected $user;
+
+    protected $url;
+
+    protected $message;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Garage $garage, $user)
+    public function __construct($instance, $user, $url, $message)
     {
-        $this->garage = $garage;
+        $this->instance = $instance;
         $this->user = $user;
+        $this->url = $url;
+        $this->message = $message;
     }
 
     /**
@@ -49,10 +54,10 @@ class EditGarageNotification extends Notification
     {
         return [
             
-            'garage' => $this->garage->toArray(),
+            'instance' => $this->instance->toArray(),
             'user' => $this->user->toArray(),
-            'message' => trans('admin.message.request_unactive_garage') . $this->garage->name,
-            'link' => route('admin.detailgarage', $this->garage->id),
+            'message' => $this->message,
+            'link' => $this->url,
         ];
     }
 }

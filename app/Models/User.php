@@ -98,7 +98,7 @@ class User extends Authenticatable
      * Mutator for password.
      * @param $password
      */
-    public function setPasswordAttribute($password)
+    public function setPassword($password)
     {
         $this->attributes['password'] = Hash::make($password);
     }

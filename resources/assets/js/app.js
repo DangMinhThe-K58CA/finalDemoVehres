@@ -4,13 +4,15 @@
  * include Vue and Vue Resource. This gives a great starting point for
  * building robust, powerful web applications using Vue and Laravel.
  */
+
+// window.$ = window.jQuery = require('jquery');
+// require('bootstrap-sass');
+
 import Profile from './homes/user/Profile';
 import HomeMaps from './homes/HomeMaps';
 import Bookmark from './homes/Bookmark';
 import Visit from './homes/Visit';
 import Article from './homes/article/Article';
-
-require('./bootstrap');
 
 window.assetUrl = $('#app').data('asset-url').slice(0, -1);
 

@@ -56,6 +56,6 @@ class Article extends Model
      */
     public function getAvatarAttribute($value)
     {
-        return config('common.path.image') . '/' . $value;
+        return config('common.path.image') . '/' .$value;
     }
 }

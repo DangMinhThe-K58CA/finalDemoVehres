@@ -56,9 +56,20 @@ return [
     'error' => [
         '404' => [
             'image' => 'uploads/images/errors/404.png',
+        ],
+        '403' => [
+            'image' => 'uploads/images/errors/403.png',
         ]
     ],
 
     'home_map_icon' => 'uploads/images/location-map-flat.jpg',
     'paging_number' => 10,
+
+    'article' => [
+        'status' => [
+            'activated' => 1,
+            'unactivated' => 0,
+        ],
+        'recent_viewed_number' => 5,
+    ],
 ];

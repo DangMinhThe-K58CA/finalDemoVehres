@@ -3,6 +3,7 @@
 {!! Html::script(asset('/js/laroute.js')) !!}
 {{--{!! Html::script(asset('/js/PartnerSite.js')) !!}--}}
 {{--{!! Html::script(asset('/js/workingWithMaps.js')) !!}--}}
+{{--{!! Html::script(asset('/js/notification.js')) !!}--}}
 {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.3/metisMenu.min.js') !!}
 {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.0/jquery.slimscroll.min.js') !!}
 {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js') !!}

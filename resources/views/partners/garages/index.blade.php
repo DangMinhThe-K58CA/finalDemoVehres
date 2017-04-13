@@ -28,6 +28,9 @@
                     <th>{{ trans('admin.garages.website') }}</th>
                     <th>Maps</th>
                     <th>{{ trans('admin.garages.view') }}</th>
+                    @if($status == 1)
+                        <th>Request Edit</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -58,7 +61,7 @@
                                 <i class="fa fa-map-o" style="font-size:24px;color:#0a568c"></i>
                             </a>
                         @else
-                            <a href="{{ action('Home\GarageController@show', ['id' => $item->id]) }}" target="_blank">
+                            <a class="mapBtn" href="{{ action('Home\GarageController@show', ['id' => $item->id]) }}" target="_blank">
                                 <i class="fa fa-map-o" style="font-size:24px;color:#0a568c"></i>
                             </a>
                         @endif
@@ -68,6 +71,13 @@
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
                     </td>
+                    @if($item->status === 1)
+                        <td class="center">
+                            {!! Form::open(['method' => 'GET', 'action' => ['Partner\GarageController@edit', $item->id]]) !!}
+                            {{ Form::button('<span class="glyphicon glyphicon-arrow-right"></span> ', ['type' => 'submit', 'class' => 'btn btn-success']) }}
+                            {!! Form::close() !!}
+                        </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

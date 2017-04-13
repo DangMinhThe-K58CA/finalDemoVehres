@@ -48,9 +48,15 @@ class GarageController extends Controller
             $garage->status = config('common.garage.status.unactivated');
             $garage->save();
             //send noti for partner
-            $send_user->notify(new UnactiveGarage($garage));
-            $created_at = $send_user->unreadNotifications()->first()->created_at;
-            event(new UnActiveGarageEvent($send_user, $garage, $created_at));
+            $url = action('Partner\GarageController@show', $garage->id);
+            $message = trans('admin.message.unactive_garage') . $garage->name;
+            //
+            $send_user->notify(new UnactiveGarage($garage, $url, $message));
+            $tmpNoti = $send_user->unreadNotifications()->first();
+            $created_at = $tmpNoti->created_at;
+            $notiId = $tmpNoti->id;
+            
+            event(new UnActiveGarageEvent($send_user, $notiId, $garage, $url, $message, $created_at));
 
             return redirect()->action('Admin\GarageController@index', ['status' => config('common.garage.status.unactivated')])
             ->with('success', trans('session.garages.garage_unactive_success'));

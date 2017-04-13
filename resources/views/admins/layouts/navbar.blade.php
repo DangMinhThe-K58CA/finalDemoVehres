@@ -17,7 +17,7 @@
             <!-- info -->
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown">
-                    <span class=" name-caret">{{ Auth::user()->name }}<i class="caret"></i></span><img src="{{ Auth::user()->avatar }}" id="avatar">
+                    <span class=" name-caret">{{ Auth::user()->name }}<i class="caret"></i></span><img class="img-circle" src="{{ Auth::user()->avatar }}" id="avatar">
                 </a>
                 <ul class="dropdown-menu " role="menu">
                     <li>
@@ -48,15 +48,15 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
-                <li>
-                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">{{ trans('admin.dashboard') }}</span></a>
-                </li>
+                {{--<li>--}}
+                    {{--<a href="#" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">{{ trans('admin.dashboard') }}</span></a>--}}
+                {{--</li>--}}
 
                 <li>
                     <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">{{ trans('admin.manageGarages') }}</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="{{ action('Admin\GarageController@index', ['status' => config('common.garage.status.unactivated')]) }}" class=" hvr-bounce-to-right"> <i class="fa fa-star nav_icon"></i></i></i>{{ trans('admin.newGarages') }}</a>
+                            <a href="{{ action('Admin\GarageController@index', ['status' => config('common.garage.status.unactivated')]) }}" class=" hvr-bounce-to-right"> <i class="fa fa-star nav_icon"></i></i></i>Unactivated Garages</a>
                         </li>
 
                         <li>
@@ -69,11 +69,11 @@
                     <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-book nav_icon"></i></i> <span class="nav-label">{{ trans('admin.manageArticles') }}</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#" class=" hvr-bounce-to-right"> <i class="fa fa-plus nav_icon"></i></i>{{ trans('admin.newArticles') }}</a>
+                            <a href="{{ action('Admin\ArticlesController@index', ['status' => config('common.article.status.unactivated')]) }}" class=" hvr-bounce-to-right"> <i class="fa fa-plus nav_icon"></i></i>Unactivated Articles</a>
                         </li>
 
                         <li>
-                            <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-check nav_icon"></i>{{ trans('admin.articlesActivated') }}</a>
+                            <a href="{{ action('Admin\ArticlesController@index', ['status' => config('common.article.status.activated')]) }}" class=" hvr-bounce-to-right"><i class="fa fa-check nav_icon"></i>{{ trans('admin.articlesActivated') }}</a>
                         </li>
                     </ul>
                 </li>

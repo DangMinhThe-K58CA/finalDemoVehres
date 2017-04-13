@@ -152,7 +152,7 @@ class UserController extends Controller
         $isCorrectCurPass = Auth::user()->isCorrectCurrentPassword($curPass);
 
         if ($isCorrectCurPass) {
-            Auth::user()->password = $request->input('newPassword');
+            Auth::user()->setPassword($request->input('newPassword'));
             Auth::logout();
             return redirect('login')->with('success', 'Password is Changed');
         }

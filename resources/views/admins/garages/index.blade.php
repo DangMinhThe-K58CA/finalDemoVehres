@@ -20,7 +20,7 @@
                 <th>{{ trans('admin.garages.phone_number') }}</th>
                 <th>{{ trans('admin.garages.address') }}</th>
                 <th>{{ trans('admin.garages.website') }}</th>
-                <th>{{ trans('admin.garages.working_time') }}</th>
+                <th>Maps</th>
                 <th>{{ trans('admin.garages.view') }}</th>
                 @if ($status == config('common.garage.status.activated'))
                 <th>{{ trans('admin.garages.unactive') }}</th>
@@ -42,7 +42,11 @@
                 <td class="center">{{ $item->phone_number }}</td>
                 <td class="center">{{ $item->address }}</td>
                 <td class="center"><a href="{{$item->website}}">{{ $item->website }}</a></td>
-                <td class="center">{{ $item->working_time }}</td>
+                <td class="center">
+                    <a class="mapBtn" href="{{ action('Home\GarageController@show', ['id' => $item->id]) }}" target="_blank">
+                        <i class="fa fa-map-o" style="font-size:24px;color:#0a568c"></i>
+                    </a>
+                </td>
                 <td class="center">
                     <a class="btn btn-small btn-primary showActivatedGarage" href="#" data-toggle="modal" data-target="#show_activated_garage" name="showGarageButton" data-garage-id="{{ $item->id }}">
                         <span class="glyphicon glyphicon-eye-open"></span>

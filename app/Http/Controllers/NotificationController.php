@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -17,7 +17,13 @@ class NotificationController extends Controller
         $unreadNotifications = Auth::user()->unreadNotifications;
         $notifications = Auth::user()->notifications()->paginate(5);
 
-        return view('admins.notifications.index', compact('notifications', 'unreadNotifications'));
+        if (Auth::user()->role == config('common.user.role.partner')) {
+            return view('partners.notifications.index', compact('notifications', 'unreadNotifications'));
+        }
+        if (Auth::user()->role == config('common.user.role.admin')) {
+            return view('admins.notifications.index', compact('notifications', 'unreadNotifications'));
+
+        }
     }
 
     /**
@@ -75,7 +81,7 @@ class NotificationController extends Controller
         $notification = Auth::user()->notifications()->find($id);
         $notification->markAsRead();
 
-        return response()->json('ok');
+        return \Response::json('ok');
     }
 
     /**

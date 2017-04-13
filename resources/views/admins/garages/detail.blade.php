@@ -72,7 +72,7 @@
             </div>
             <div class="modal-footer">
                 @if($garage->status === config('common.garage.status.activated'))
-                    {!!  Form::open(['method' => 'PUT', 'route' => ['garages.update', $garage->id]]) !!}
+                    {!!  Form::open(['method' => 'PUT', 'action' => ['Admin\GarageController@update', $garage->id]]) !!}
                     {!! Form::button('<span class="glyphicon glyphicon-remove"></span> ' . trans('admin.button.unactive'), ['type' => 'submit', 'class' => 'btn btn-primary', 'onclick' => "return confirm('Are you agree unactive this garage ?')"]) !!}
                     {!! Form::close() !!}
                 @endif

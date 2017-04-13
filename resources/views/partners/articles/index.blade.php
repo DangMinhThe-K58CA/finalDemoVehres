@@ -26,6 +26,9 @@
                     <th>Summary</th>
                     <th>Create</th>
                     <th>View</th>
+                    @if($status == config('common.article.status.activated'))
+                        <th>Request Edit</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -51,6 +54,13 @@
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
                     </td>
+                    @if($item->status == config('common.article.status.activated'))
+                        <td>
+                            {!! Form::open(['method' => 'GET', 'action' => ['Partner\ArticleController@edit', $item->id]]) !!}
+                            {{ Form::button('<span class="glyphicon glyphicon-arrow-right"></span> ', ['type' => 'submit', 'class' => 'btn btn-success']) }}
+                            {!! Form::close() !!}
+                        </td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

@@ -1,3 +1,5 @@
+require('./bootstrap');
+
 $(document).ready(function () {
     $.ajaxSetup({
         headers: {
@@ -105,6 +107,29 @@ $(document).ready(function () {
     if ($('.textAreaForEditorField').length !== 0) {
         CkEditorInit('contentEditor');
     }
+
+    $(document).on('click', 'a[name="notifications"]', function (event) {
+        var notiId = $(event.currentTarget).closest('li').data('notif-id');
+        var token = $('meta[name="csrf-token"]').attr('content');
+        var numberNoti = $('.number').text();
+        numberNoti = parseInt(numberNoti) - 1;
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+            }
+        });
+
+        $.ajax({
+            url: laroute.action('App\Http\Controllers\NotificationController@update', {'notification' : notiId}),
+            method: 'POST',
+            data: {
+                '_method': 'PUT'
+            }
+        });
+    });
+
+
 });
 
 function CkEditorInit(name) {
@@ -136,3 +161,20 @@ function previewImage(input, previewFieldId) {
 $(document).on('click', '.closeModalBtn', function (event) {
     window.location.reload();
 });
+
+// //markasread notification
+// $(document).on('click', 'a[name="notifications"]', function (event) {
+//     var notiId = $(event.currentTarget).closest('li').data('notif-id');
+//     var token = $('meta[name="csrf-token"]').attr('content');
+//     var numberNoti = $('.number').text();
+//     numberNoti = parseInt(numberNoti) - 1;
+//     alert(laroute.action('App\Http\Controllers\NotificationController@update', {'notification' : notiId}));
+//     $.ajax({
+//         url: laroute.action('NotificationController@update', {'notification' : notiId}),
+//         method: 'POST',
+//         data: {
+//             '_token': token,
+//             '_method': 'PUT'
+//         },
+//     });
+// });

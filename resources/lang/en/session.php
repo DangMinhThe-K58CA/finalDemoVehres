@@ -15,6 +15,12 @@ return [
         'no_delete_admin' => 'Unauthorized Delete Admin',
     ],
     'success' => 'Success',
+    'articles' => [
+        'article_delete_success' => 'Delete Article Success',
+        'article_active_success' => 'Active Article Success',
+        'article_unactive_success' => 'UnActivated Article Success',
+        'article_not_found' => 'This Article Not Found',
+    ],
     'whoops' => 'Whoops!',
     'error' => 'There were some problems with your input.',
     'warning' => 'warning',

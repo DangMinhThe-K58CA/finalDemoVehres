@@ -9,7 +9,7 @@ return [
     'newGarages' => 'New Garages',
     'garagesActivated' => 'Activated Garages',
     'newArticles' => 'New Articles',
-    'articlesActivated' => 'Articles Activated',
+    'articlesActivated' => 'Activated Articles',
     'garages' => [
         'new-garages' => 'New Garages',
         'activated_garages' => 'Activated Garages',
@@ -61,5 +61,23 @@ return [
     ],
     'button' => [
         'unactive' => 'UnActive',
+    ],
+
+    'articles' => [
+        'activated_article' => 'Activated Articles',
+        'new_article' => 'New Articles',
+        'no' => 'No',
+        'user' => 'Author',
+        'title' => 'Title',
+        'short_description' => 'Short Description',
+        'view' => 'View',
+        'delete' => 'Delete',
+        'accept' => 'Active',
+        'created_at' => 'Create Date',
+        'unactive' => 'UnActive',
+        'on' => 'On ',
+    ],
+    'errors' => [
+        '404_article' => 'This Article Not Found',
     ],
 ];

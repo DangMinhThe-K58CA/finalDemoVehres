@@ -66,13 +66,18 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            @if($article->status === config('common.article.status.activated'))
+                                {!! Form::open(['method' => 'GET', 'action' => ['Partner\ArticleController@edit', $article->id]]) !!}
+                                {{ Form::button('<span class="glyphicon glyphicon-arrow-right"></span> ', ['type' => 'submit', 'title' => 'request edit', 'class' => 'btn btn-success']) }}
+                                {!! Form::close() !!}
+                            @else
+
+                            @endif
+                        </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
-            </div>
-            <div class="clearfix"></div>
-            <div class="col-md-12">
-
             </div>
         </div>
     </div>

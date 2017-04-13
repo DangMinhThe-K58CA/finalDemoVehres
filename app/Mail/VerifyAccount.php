@@ -28,6 +28,7 @@ class VerifyAccount extends Mailable
      */
     public function __construct($user)
     {
+        $this->user = $user;
         $this->link = $this->makeSecureLink();
     }
 
@@ -39,7 +40,6 @@ class VerifyAccount extends Mailable
     {
         $email = $this->user->email;
         $password = User::select('password')->where('email', $email)->first()->password;
-
         $hashedPass = bcrypt($password);
         $hashedEmail = base64_encode($email);
         $suffix = $hashedEmail . $hashedPass;

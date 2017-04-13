@@ -7,8 +7,6 @@ window._ = require('lodash');
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = require('jquery');
-require('bootstrap-sass');
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -37,7 +35,7 @@ require('bootstrap-sass');
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from "laravel-echo"
+import Echo from "laravel-echo";
 
 window.Pusher = require('pusher-js');
 
@@ -116,7 +114,7 @@ channel.bind('App\\Events\\EditGarageEvent', function(data) {
         var numberNoti = $('.number').text();
         numberNoti = parseInt(numberNoti) + 1;
         $('.number').text(numberNoti);
-        var html = "<li class='list-group-item'><a href='"+data.url+"' name='notifications'><div class='user-new'><p>"+data.message+"</p>";
+        var html = "<li class='list-group-item' style='background-color: #D1F4E6;' data-notif-id='" + data.notiId + "'><a href='"+data.url+"' name='notifications'><div class='user-new'><p>"+data.message+"</p>";
         html += "<span>"+diffForHumans(new Date(data.created_at.date).getTime())+"</span>";
         html += "</div><div class='user-new-left'>"
         html += "<i class='fa fa-info'></i></div>"
@@ -133,7 +131,7 @@ channel.bind('App\\Events\\UnActiveGarageEvent', function(data) {
         var numberNoti = $('.number').text();
         numberNoti = parseInt(numberNoti) + 1;
         $('.number').text(numberNoti);
-        var html = "<li class='list-group-item'><a href='"+data.url+"' name='notifications'><div class='user-new'><p>"+data.message+"</p>";
+        var html = "<li class='list-group-item' style='background-color: #D1F4E6;' data-notif-id='" + data.notiId + "'><a href='"+data.url+"' name='notifications'><div class='user-new'><p>"+data.message+"</p>";
         html += "<span>"+diffForHumans(new Date(data.created_at.date).getTime())+"</span>";
         html += "</div><div class='user-new-left'>"
         html += "<i class='fa fa-info'></i></div>"

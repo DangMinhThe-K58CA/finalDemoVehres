@@ -11,11 +11,12 @@
 |
 */
 
-Route::get('/', 'Home\HomeController@welcome');
+use Illuminate\Support\Facades\Hash;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    dd(Hash::make('11111111'));
+//});
+Route::get('/', 'Home\HomeController@welcome');
 
 Auth::routes();
 
@@ -29,6 +30,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['cus
     //Route manage Garages
     Route::resource('garages', 'GarageController', ['only' => ['index', 'update', 'destroy', 'show']]);
 
+    //Route manage Articles
+    Route::resource('articles', 'ArticlesController');
     Route::get('detail-garages/{garage}', [
         'as' => 'admin.detailgarage',
         'uses' => 'GarageController@detailGarage'

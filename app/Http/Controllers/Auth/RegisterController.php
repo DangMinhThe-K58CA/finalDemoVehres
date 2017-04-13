@@ -89,10 +89,6 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
 
-        $user = new \stdClass();
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-
         $this->sendVerifyingEmailTo($user);
 
         return redirect('register')->with('success', trans('auth.register_success'));

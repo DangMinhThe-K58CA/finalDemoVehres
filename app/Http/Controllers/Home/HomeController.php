@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Home;
 
+use App\Models\Article;
 use App\Repositories\Contracts\ArticleRepositoryInterface;
 use App\Repositories\Contracts\GarageRepositoryInterface;
 use App\Http\Controllers\Controller;
@@ -33,7 +34,9 @@ class HomeController extends Controller
     public function welcome(Request $request)
     {
         $data = [];
-        $allArticles = $this->articleRepo->paginate(config('common.article.paginate'));
+        $allArticles = Article::where('status', config('common.article.status.activated'))
+                ->orderBy('created_at', 'desc')
+                ->paginate(config('common.article.paginate'));
         $topRateGarages = $this->garageRepo->getTopRated(config('common.garage.top_rated_number'));
         $data['allArticles'] = $allArticles;
         $data['topRateGarages'] = $topRateGarages;

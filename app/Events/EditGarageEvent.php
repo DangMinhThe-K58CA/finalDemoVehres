@@ -17,26 +17,27 @@ class EditGarageEvent implements ShouldBroadcast
 
     public $user;
 
-    public $garage;
-
     public $url;
 
     public $created_at;
 
     public $message;
 
+    public $notiId;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($user, Garage $garage, $created_at)
+    public function __construct($user, $notiId, $url, $message, $created_at)
     {
+        
         $this->user = $user;
-        $this->garage = $garage;
-        $this->url = route('admin.detailgarage', $this->garage->id);
+        $this->url = $url;
+        $this->message = $message;
         $this->created_at = $created_at;
-        $this->message = trans('admin.message.request_unactive_garage') . $this->garage->name;
+        $this->notiId = $notiId;
     }
 
     /**

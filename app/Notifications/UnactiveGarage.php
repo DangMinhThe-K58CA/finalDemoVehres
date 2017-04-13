@@ -6,22 +6,27 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use App\Models\Garage;
 
 class UnactiveGarage extends Notification
 {
     use Queueable;
 
-    protected $garage;
+    protected $instance;
+
+    protected $url;
+
+    protected $message;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Garage $garage)
+    public function __construct($instance, $url, $message)
     {
-        $this->garage = $garage;
+        $this->instance = $instance;
+        $this->url = $url;
+        $this->message = $message;
     }
 
     /**
@@ -46,8 +51,8 @@ class UnactiveGarage extends Notification
     {
         return [
             // link route edit garage of partner
-            'link' => action('Partner\GarageController@show', $this->garage->id),
-            'message' => trans('admin.message.unactive_garage') . $this->garage->name
+            'link' => $this->url,
+            'message' => $this->message,
         ];
     }
 }

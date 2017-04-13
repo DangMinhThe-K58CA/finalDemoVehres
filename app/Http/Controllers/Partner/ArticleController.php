@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Partner;
 
+use App\Events\EditGarageEvent;
 use App\Http\Requests\CreatingArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
+use App\Models\User;
+use App\Notifications\EditGarageNotification;
 use MyHelper;
 use App\Repositories\Contracts\ArticleRepositoryInterface;
 use Illuminate\Http\Request;
@@ -97,6 +100,22 @@ class ArticleController extends Controller
         $article = $this->repository->find($id);
         if ($article === null) {
             abort(404, 'Article\'s not found !');
+        }
+        $admin = User::where('role', 3)->first();
+
+        if ($article->status == 1 && Auth::user()->role == 2) {
+            //send notify to admin
+            $message = trans('admin.message.request_unactive_garage') . $article->title;
+            $url = action('Admin\ArticlesController@show', $article->id);
+            //
+            $noti = new EditGarageNotification($article, Auth::user(), $url, $message);
+            $admin->notify($noti);
+            $tmpNoti = $admin->unreadNotifications()->first();
+            $created_at = $tmpNoti->created_at;
+            $notiId = $tmpNoti->id;
+            event(new EditGarageEvent($admin, $notiId, $url, $message, $created_at));
+
+            return redirect()->action('Partner\ArticleController@index', ['status' => $article->status])->with('success', 'Request had been sent');
         }
 
         return view('partners.articles.edit', ['article' => $article]);

@@ -12,6 +12,8 @@
     <!-- Infomation -->
     <div class="drop-men">
         <ul class="nav_1">
+            <!-- content notification -->
+            @include('partners.layouts.notifications')
             <!-- info -->
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown">
@@ -46,9 +48,9 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
-                <li>
-                    <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">{{ trans('admin.dashboard') }}</span></a>
-                </li>
+                {{--<li>--}}
+                    {{--<a href="#" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">{{ trans('admin.dashboard') }}</span></a>--}}
+                {{--</li>--}}
 
                 <li>
                     <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">{{ trans('admin.manageGarages') }}</span><span class="fa arrow"></span></a>

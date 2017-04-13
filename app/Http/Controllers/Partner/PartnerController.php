@@ -9,6 +9,6 @@ class PartnerController extends Controller
 {
     public function index()
     {
-        return view('partners.index');
+        return view('partners.notifications.index');
     }
 }

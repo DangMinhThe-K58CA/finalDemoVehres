@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Partner;
 
+use App\Events\EditGarageEvent;
 use App\Http\Requests\AddingGarageRequest;
 use App\Http\Requests\UpdateGarageLocationRequest;
 use App\Models\AdministrationUnit;
 use App\Models\Garage;
+use App\Models\User;
+use App\Notifications\EditGarageNotification;
 use Illuminate\Http\UploadedFile;
 use MyHelper;
 use App\Http\Requests\UpdateGarageRequest;
@@ -13,6 +16,7 @@ use App\Repositories\Contracts\GarageRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Notification;
 
 class GarageController extends Controller
 {
@@ -149,7 +153,22 @@ class GarageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $garage = Garage::find($id);
+        $admin = User::where('role', 3)->first();
+        if ($garage->status == 1 && Auth::user()->role == 2) {
+            //send notify to admin
+            $message = trans('admin.message.request_unactive_garage') . $garage->name;
+            $url = route('admin.detailgarage', $garage->id);
+            //
+            $noti = new EditGarageNotification($garage, Auth::user(), $url, $message);
+            $admin->notify($noti);
+            $tmpNoti = $admin->unreadNotifications()->first();
+            $created_at = $tmpNoti->created_at;
+            $notiId = $tmpNoti->id;
+            event(new EditGarageEvent($admin, $notiId, $url, $message, $created_at));
+        }
+        // dd($admin->unreadNotifications);
+        return redirect()->action('Partner\GarageController@index', ['status' => $garage->status])->with('success', 'Request had been sent');
     }
 
     public function uploadFile(UploadedFile $file)
@@ -162,11 +181,12 @@ class GarageController extends Controller
         $id = $request->input('id');
         $garage = $this->repository->find($id);
 
-        if ($garage !== null || Auth::user()->can('update', $garage)) {
+//        dd($garage !== null && Auth::user()->can('update', $garage));
+        if ($garage !== null && Auth::user()->can('update', $garage)) {
             $latLng = $request->all();
             $result = $garage->update($latLng);
 
-            if ($result === 1) {
+            if ($result) {
                 return \Response::json(['status' => '1', 'data' => null]);
             }
         }

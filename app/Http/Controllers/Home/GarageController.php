@@ -36,7 +36,7 @@ class GarageController extends Controller
         $this->garageRepository->pushCriteria(new HomeGarageCriteria());
     }
 
-    
+
     public function rate(RatingRequest $request)
     {
         $userId = Auth::user()->id;
@@ -65,6 +65,9 @@ class GarageController extends Controller
 
     public function show(SpecificGarageRequest $request)
     {
+        if (Auth::user()->role === config('common.user.role.admin')) {
+            $this->garageRepository->skipCriteria();
+        }
         $id = $request->input('id');
         
         $garage = $this->garageRepository->find($id);

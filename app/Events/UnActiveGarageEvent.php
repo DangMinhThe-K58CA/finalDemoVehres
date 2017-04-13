@@ -9,7 +9,6 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use App\Models\Garage;
 
 class UnActiveGarageEvent implements ShouldBroadcast
 {
@@ -17,7 +16,7 @@ class UnActiveGarageEvent implements ShouldBroadcast
 
     public $user;
 
-    public $garage;
+    public $instance;
 
     public $url;
 
@@ -25,19 +24,22 @@ class UnActiveGarageEvent implements ShouldBroadcast
 
     public $message;
 
+    public $notiId;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($user, Garage $garage, $created_at)
+    public function __construct($user, $notiId, $instance, $url, $message, $created_at)
     {
         $this->user = $user;
-        $this->garage = $garage;
+        $this->instance = $instance;
         // link route edit garage of partner
-        $this->url = action('Partner\GarageController@show', $this->garage->id);
+        $this->url = $url;
         $this->created_at = $created_at;
-        $this->message = trans('admin.message.unactive_garage') . $this->garage->name;
+        $this->message = $message;
+        $this->notiId = $notiId;
     }
 
     /**
